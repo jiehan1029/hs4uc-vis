@@ -1,15 +1,16 @@
 import Image from "next/image";
-import CustomBarChart from "./components/CustomBarChart";
-import CustomSelect from "./components/CustomSelect";
+import CustomBarChart from "../components/CustomBarChart";
+import ControlWidget from "../components/ControlWidget"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid items-center justify-items-center min-h-screen p-8 pb-10 gap-16 sm:p-10 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1>Visualization</h1>
+        
+        <h1 className="text-xl font-semibold text-center my-1 mb-4">Visualization</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <CustomSelect />
+        <div className="w-full flex gap-4 items-center flex-col sm:flex-row mb-12">
+          <ControlWidget />
         </div>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
