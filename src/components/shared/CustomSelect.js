@@ -4,7 +4,16 @@ import React, { useState, useEffect }  from 'react';
 import {Select, SelectItem} from "@nextui-org/react";
 
 export default function CustomSelect(props) {
-  const { options, selectedKeys=[], onSelectChange=()=>{}, label="", placeholder="Make a selection", customClassName="", showCaption=true, customCaption="" } = props
+  const { 
+    options, 
+    selectedKeys=[], 
+    onSelectChange=()=>{}, 
+    label="", 
+    placeholder="Make a selection", 
+    customClassName="", 
+    showCaption=true, 
+    customCaption="", 
+    isDisabled=false } = props
   
   const [selectedValue, setSelectedValue] = useState(options.filter(opt=>selectedKeys.includes(opt.key)).map(obj=>obj.value))
   useEffect(()=>{
@@ -14,6 +23,7 @@ export default function CustomSelect(props) {
   return (
     <div className={`${customClassName} flex flex-col flex-wrap md:flex-nowrap gap-4 flex-grow`}>
       <Select
+        isDisabled={isDisabled}
         label={label}
         placeholder={placeholder}
         className="max-w-sm"

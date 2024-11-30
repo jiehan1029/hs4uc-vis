@@ -52,6 +52,21 @@ const useStore = create((set, get) => ({
             return { selectDatasetType: "application/student"}
         }
     }),
+    changeFetchSelector: async (selectType, newValue) => {
+        if(selectType === "year"){
+            get().setYear(newValue)
+        }
+        if(selectType === "campus"){
+            get().setCampus(newValue)
+        }
+        if(selectType === "schoolType"){
+            get().setSchoolType(newValue)
+        }
+        if(selectType === "datasetType"){
+            get().setDatasetType(newValue)
+        }
+        await get().fetchAnalyzeData()
+    },
 
     setPage: (newPage) => set(()=>({page: newPage})),
     goToNextPage: async ()=>{

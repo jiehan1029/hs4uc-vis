@@ -24,6 +24,7 @@ export default function ControlWidget(){
         page,
         goToNextPage,
         goToPrevPage,
+        changeFetchSelector,
     } = useStore();
 
     const yearOptions = SUPPORTED_YEAR_LIST.map(year=>({label: year.toUpperCase(), key: year.toLowerCase()}))
@@ -31,45 +32,32 @@ export default function ControlWidget(){
     const schoolTypeOptions = SUPPORTED_SCHOOL_TYPE_LIST.map(type=>({label: type.toUpperCase(), key: type.toLowerCase()}))
     const datasetTypeOptions = SUPPORTED_DATASET_TYPE_LIST.map(type=>({label: type, key: type}))
 
-    const onSelectChange = (selectType="year", newValue)=>{
-        if(selectType === "year"){
-            setYear(newValue)
-        }
-        if(selectType === "campus"){
-            setCampus(newValue)
-        }
-        if(selectType === "schoolType"){
-            setSchoolType(newValue)
-        }
-        if(selectType === "datasetType"){
-            setDatasetType(newValue)
-        }
-    }
-    const onYearSelectChange = (e) => onSelectChange("year", e.target.value)
-    const onCampusSelectChange = (e) => onSelectChange("campus", e.target.value)
-    const onSchoolTypeSelectChange = (e) => onSelectChange("schoolType", e.target.value)
-    const onDatasetTypeSelectChange = (e) => onSelectChange("datasetType", e.target.value)
+    const onYearSelectChange = (e) => changeFetchSelector("year", e.target.value)
+    const onCampusSelectChange = (e) => changeFetchSelector("campus", e.target.value)
+    const onSchoolTypeSelectChange = (e) => changeFetchSelector("schoolType", e.target.value)
+    const onDatasetTypeSelectChange = (e) => changeFetchSelector("datasetType", e.target.value)
     return (
         <div className="ControlWidget w-full flex-col">
             <div className="w-full flex justify-center mb-4">
                 <CustomSelect label="Year of Univ Admission"
+                    isDisabled={isFetchAnalyzeDataInflight}
                     options={yearOptions}
                     selectedKeys={[selectYear]}
                     onSelectChange={onYearSelectChange}/>
                 <CustomSelect label="UC Campus" customClassName="mh-12"
+                    isDisabled={isFetchAnalyzeDataInflight}
                     options={campusOptions}
                     selectedKeys={[selectCampus]}
                     onSelectChange={onCampusSelectChange}/>
                 <CustomSelect label="Type of High School"
+                    isDisabled={isFetchAnalyzeDataInflight}
                     options={schoolTypeOptions}
                     selectedKeys={[selectSchoolType]}
                     onSelectChange={onSchoolTypeSelectChange}/>
             </div>
-            <div className="w-full flex flex-start items-center">
-                <Button color="default" size="sm" isLoading={isFetchAnalyzeDataInflight} onClick={fetchAnalyzeData}>Apply Filters</Button>
-            </div>
             <div className="w-full flex justify-between items-end mt-8">
                 <CustomSelect label="Dataset to Display"
+                    isDisabled={isFetchAnalyzeDataInflight}
                     options={datasetTypeOptions}
                     selectedKeys={[selectDatasetType]}
                     onSelectChange={onDatasetTypeSelectChange}
