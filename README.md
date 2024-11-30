@@ -1,3 +1,9 @@
+### What is it??
+This is my pet project during the Thanksgiving holiday. It creates stacked barcharts for the backend HS4UC. It's also my first NextJS app (with zustand and recharts).
+
+
+----
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
