@@ -4,7 +4,7 @@ import React, { useState, useEffect }  from 'react';
 import {Select, SelectItem} from "@nextui-org/react";
 
 export default function CustomSelect(props) {
-  const { options, selectedKeys=[], onSelectChange=()=>{}, label="", placeholder="Make a selection", customClassName="" } = props
+  const { options, selectedKeys=[], onSelectChange=()=>{}, label="", placeholder="Make a selection", customClassName="", showCaption=true, customCaption="" } = props
   
   const [selectedValue, setSelectedValue] = useState(options.filter(opt=>selectedKeys.includes(opt.key)).map(obj=>obj.value))
   useEffect(()=>{
@@ -26,7 +26,7 @@ export default function CustomSelect(props) {
           </SelectItem>
         ))}
       </Select>
-      <p className="text-small text-default-500">Selected: {selectedValue}</p>
+      {showCaption && <p className="text-small text-default-500" style={{maxWidth: '380px'}}>{customCaption ? customCaption : `Selected: ${selectedValue}`}</p>}
     </div>
   );
 }
